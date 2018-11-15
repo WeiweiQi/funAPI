@@ -10,7 +10,6 @@ public class PictureCompareController extends Controller{
 	}
 	
 	public void uploadFile() {
-		
 		System.out.println("ok");
 		UploadFile file = getFile();
 		System.out.println("file path : "+file.getUploadPath());
