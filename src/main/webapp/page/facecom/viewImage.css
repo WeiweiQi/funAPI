@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+.imgShow{
+    list-style:none;
+}
+.imgShow li{
+    margin-left:5px;
+    width: 200px;
+    height: 200px;
+    float: left;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);
+    border:1px solid #a9c9e2;
+    background:#e8f5fe;
+}
+.file {
+    position: relative;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px; display:block;
+    width:100px;
+    text-align:center;       
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0; 
+    width:130px;
+    height:30px; 
+    background-color:#D0EEFF opacity:0.5;
+    filter:alpha(opacity=-250); 
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}﻿​
