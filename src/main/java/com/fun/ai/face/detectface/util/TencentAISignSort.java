@@ -1,4 +1,4 @@
-package com.tencent.ai.facerace;
+package com.fun.ai.face.detectface.util;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+
+import com.tencent.ai.facerace.FaceConstant;
 
 
 public class TencentAISignSort {
@@ -35,7 +37,7 @@ public class TencentAISignSort {
            // System.err.println("拼接APPKEY后的参数："+baseString.toString());
             // 使用MD5对待签名串求签
             try {
-                String sign = com.tencent.ai.facerace.MD5.md5(baseString.toString());//.getMD5(baseString.toString());
+                String sign = com.fun.ai.face.detectface.util.MD5.md5(baseString.toString());//.getMD5(baseString.toString());
                 return sign.toUpperCase();
             } catch (Exception ex) {
                 throw new IOException(ex);

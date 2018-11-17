@@ -1,4 +1,4 @@
-package com.tencent.ai.facerace;
+package com.fun.ai.face.detectface.util;
 
 public class UrlMethodUtil {
     public static byte[] local2byte(String url)throws Exception{  //由本地路径得到byte

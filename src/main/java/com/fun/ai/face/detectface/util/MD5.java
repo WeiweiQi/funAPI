@@ -1,4 +1,4 @@
-package com.tencent.ai.facerace;
+package com.fun.ai.face.detectface.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

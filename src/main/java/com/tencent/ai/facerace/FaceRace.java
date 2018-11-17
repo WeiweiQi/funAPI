@@ -8,13 +8,12 @@ import java.util.UUID;
 
 import org.eclipse.jetty.util.UrlEncoded;
 
+import com.fun.ai.face.detectface.util.Base64Util;
+import com.fun.ai.face.detectface.util.TencentAISignSort;
+import com.fun.ai.face.detectface.util.UrlMethodUtil;
 import com.jfinal.kit.HttpKit;
 
 public class FaceRace {
-	
-	public static final String APPID = "";
-	public static final String APPKEY = "";
-	public static final String BASEURL = "";
 	
 	public static void main(String[] args) throws Exception {
 		byte [] imageData = 
@@ -40,17 +39,9 @@ public class FaceRace {
 			data.append(entry.getKey()).append("=").append(UrlEncoded.encodeString(entry.getValue())).append("&");
 		}
 		
-//		HttpPost httpPost = new HttpPost();
-//		URI aUrl = new URI(FaceConstant.FACE_BASEURL);
-//		httpPost.setURI(aUrl);
-//		
-//		httpPost.started();
 		String dataString = data.deleteCharAt(data.length()-1).toString();
 		System.out.println(dataString);
-		//String urlEncode = UrlEncoded.encodeString(dataString, Charset.forName("UTF-8"));
-		//System.out.println(urlEncode);
-		String response = HttpKit.post(FaceConstant.FACE_BASEURL, null, dataString, headers);//.post(FaceConstant.FACE_BASEURL, null, dataString, headers);
-		//String response = HttpUtil.sendPost(FaceConstant.FACE_BASEURL, dataString);
+		String response = HttpKit.post(FaceConstant.FACE_BASEURL, null, dataString, headers);
 		System.out.println(response);
 		
 		
@@ -66,32 +57,19 @@ public class FaceRace {
 		Map<String, String> queryParas = new HashMap();
 		queryParas.put("app_id", FaceConstant.FACE_APPID);
 		queryParas.put("time_stamp", new Date().getTime()/1000 + "");
-		//queryParas.put("nonce_str", UUID.randomUUID().toString().trim().replaceAll("-", ""));
-		queryParas.put("nonce_str", "abcdefghdd");
+		queryParas.put("nonce_str", UUID.randomUUID().toString().trim().replaceAll("-", ""));
 		queryParas.put("image", Base64Util.encode(imageData));
 		queryParas.put("mode", "1");
 		queryParas.put("sign", TencentAISignSort.getSignature(queryParas));
 		Map<String, String> headers = new HashMap<>();
 		headers.put("Content-Type", "application/x-www-form-urlencoded");
 		
-		//System.out.println(queryParas);
-		
 		StringBuilder data = new StringBuilder();
 		for (Map.Entry<String, String> entry : queryParas.entrySet()) {
-			data.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+			data.append(entry.getKey()).append("=").append(UrlEncoded.encodeString(entry.getValue())).append("&");
 		}
-		
-//		HttpPost httpPost = new HttpPost();
-//		URI aUrl = new URI(FaceConstant.FACE_BASEURL);
-//		httpPost.setURI(aUrl);
-//		
-//		httpPost.started();
 		String dataString = data.deleteCharAt(data.length()-1).toString();
-		System.out.println("init:" + dataString);
-		//String urlEncode = UrlEncoded.encodeString(dataString, Charset.forName("UTF-8"));
-		//System.out.println("url-endcode" + urlEncode);
-		String response = HttpKit.post(FaceConstant.FACE_BASEURL, null, dataString);//.post(FaceConstant.FACE_BASEURL, null, dataString, headers);
-		//String response = HttpUtil.sendPost(FaceConstant.FACE_BASEURL, dataString);
+		String response = HttpKit.post(FaceConstant.FACE_BASEURL, null, dataString, headers);
 		return (response);
 	}
 	
