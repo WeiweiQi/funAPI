@@ -6,7 +6,8 @@ import com.jfinal.upload.UploadFile;
 public class PictureCompareController extends Controller{
 	
 	public void index() {
-		render("upLoadPicFile.html");
+//		render("upLoadPicFile.html");
+		render("uploadPicH5.html");
 	}
 	
 	public void uploadFile() {

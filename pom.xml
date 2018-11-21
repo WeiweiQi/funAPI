@@ -104,6 +104,13 @@
     	<version>2017.5</version>
     </dependency>
     
+    <dependency>
+	  <groupId>com.qiniu</groupId>
+	  <artifactId>qiniu-java-sdk</artifactId>
+	  <version>[7.2.0, 7.2.99]</version>
+	</dependency>
+	    
+    
     <!--
     	当需要支持 JSP、JSTL 时，开启下面的依赖，注意 IDEA 下开发需要将 scope 改成 compile，
     	但打包部署到独立容器时需要再改为 provided，以免打进去一些不需要的 jar 包
