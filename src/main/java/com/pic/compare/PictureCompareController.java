@@ -1,6 +1,7 @@
 package com.pic.compare;
 
 import com.jfinal.core.Controller;
+import com.jfinal.kit.LogKit;
 import com.jfinal.upload.UploadFile;
 
 public class PictureCompareController extends Controller{
@@ -11,6 +12,7 @@ public class PictureCompareController extends Controller{
 	}
 	
 	public void uploadFile() {
+		getResponse().addHeader("Access-Control-Allow-Origin", "*");
 		System.out.println("ok");
 		UploadFile file = getFile();
 		System.out.println("file path : "+file.getUploadPath());

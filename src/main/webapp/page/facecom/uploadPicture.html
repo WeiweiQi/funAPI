@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>上传图片</title>
+    <script type="text/javascript">
+        //判断浏览器是否支持FileReader接口
+        if (typeof FileReader == 'undefined') {
+            document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+            //使选择控件不可操作
+            document.getElementById("xdaTanFileImg").setAttribute("disabled", "disabled");
+        }
+
+        //选择图片，马上预览
+        function xmTanUploadImg(obj) {
+            var file = obj.files[0];
+            console.log(obj);console.log(file);
+            console.log("file.size = " + file.size);  //file.size 单位为byte
+            var reader = new FileReader();
+            //读取文件过程方法
+            reader.onloadstart = function (e) {
+                console.log("开始读取....");
+            }
+            reader.onprogress = function (e) {
+                console.log("正在读取中....");
+            }
+            reader.onabort = function (e) {
+                console.log("中断读取....");
+            }
+            reader.onerror = function (e) {
+                console.log("读取异常....");
+            }
+            reader.onload = function (e) {
+                console.log("成功读取....");
+                var img = document.getElementById("xmTanImg");
+                img.src = e.target.result;
+                //或者 img.src = this.result;  //e.target == this
+            }
+            reader.readAsDataURL(file)
+        }
+    </script>
+
+    <link href="https://appbundle.holdsoft.cn/html5/jsandcss/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://appbundle.holdsoft.cn/html5/jsandcss/jquery-1.12.2.min.js"></script>
+    <script type="text/javascript" src="https://appbundle.holdsoft.cn/html5/jsandcss/jquery.mobile-1.4.5.min.js"></script>
+    <style type="text/css">
+        div img {
+            display: block;
+            margin: 0 auto;
+        }
+
+
+    </style>
+
+    <style>
+        #upload {
+            height: 30px;
+            width: 80px;
+            background-color: #00abff;
+            font-size: 14px;
+            line-height: 30px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            color: #fff;
+            border-radius: 3px;
+            margin-left: 20px;
+        }
+    </style>
+
+    <script language=javascript>
+        function previewFile() {
+            var preview = document.querySelector('img');
+            var file  = document.querySelector('input[type=file]').files[0];
+            var reader = new FileReader();
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
+    </script>
+</head>
+</head>
+<body>
+
+<div data-role="page">
+    <div data-role="header">
+        <h1>上传图片</h1>
+    </div>
+
+    <div data-role="content" class="ui-content">
+        <form method="post" action="http://127.0.0.1/facecom/uploadFile" enctype="multipart/form-data" >
+            <!--<p>-->
+                <!--图片上传前预览：<input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>-->
+                <!--<input type="button" value="隐藏图片" onclick="document.getElementById('xmTanImg').style.display = 'none';"/>-->
+                <!--<input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>-->
+            <!--</p>-->
+
+            <!--<img id="xmTanImg" type="file" name="file1" accept="image/*"/>-->
+            <!--<div id="xmTanDiv"></div>-->
+            <!--<input type="file" accept="image/*">-->
+            <!--<label for="upload" class="ui-upload">111</label>-->
+            <!--<input type="file" name="file" accept="image/*" data-role="button" data-theme="c" id="upload" style="display: none;"/>-->
+            <!--<input type="submit" value="提交" data-role="button">-->
+
+            <!--<label for="upload" class="ui-upload">上传图片</label>-->
+            <!--<input type="file" id="upload" style="display: none;" />-->
+
+            <input type="file" onchange="previewFile()"><br>
+            <img src="" height="200" width="300" alt=""/>
+            <input type="submit" value="提交" data-role="button">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

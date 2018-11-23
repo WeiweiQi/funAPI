@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/../js/exif.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<form id="form1" runat="server" enctype="multipart/form-data" data-ajax="false">
+    <div data-role="page" id="pageone">
+        <div data-role="main" id="mainBody">
+            <img src="img/errimg.jpg" onerror="this.src='/img/errimg.jpg'" id="imgUserIco" runat="server" />
+            　　　　　　　<asp:Button ID="Save" runat="server" OnClick="Save_Click" Text="保存" />
+
+        </div>
+    </div>
+
+    <%--以下是Hidden--%>
+    <asp:FileUpload ID="fileImg" runat="server" onchange="imgUserIco2Preview(this);" Style="display: none" />
+    <asp:HiddenField ID="hidOrientation" runat="server" Value="1" />
+</form>
+
+</body>
+</html>
